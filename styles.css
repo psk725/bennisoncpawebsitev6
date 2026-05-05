@@ -901,3 +901,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 .muted-copy {
   color: var(--color-text-muted);
 }
+<p class="muted-copy">
+  Not sure which fit is right? Start a conversation and I’ll help scope the next step.
+</p>
