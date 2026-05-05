@@ -881,7 +881,7 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 }
 /* Hero headline size adjustment */
 .hero h1 {
-  font-size: clamp(2.75rem, 5.4vw, 4.85rem);
+  font-size: clamp(2.4rem, 4.6vw, 4.25rem);
   line-height: 1.02;
   max-width: 14ch;
 }
