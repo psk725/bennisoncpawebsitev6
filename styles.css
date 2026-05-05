@@ -409,7 +409,9 @@ h2 {
 
 .hero-card h2 {
   font-family: var(--font-body);
-  font-size: var(--text-lg);
+  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+  line-height: 1.12;
+  max-width: 100%;
   margin-top: var(--space-3);
 }
 
