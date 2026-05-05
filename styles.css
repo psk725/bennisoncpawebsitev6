@@ -904,9 +904,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 p.muted-copy {
   color: var(--color-text-muted) !important;
 }
-[data-theme='dark'] .nav-links .client-portal {
-  color: var(--color-surface) !important;
-}
 .services p.muted-copy {
   color: #65706e !important;
   font-size: var(--text-base);
@@ -924,4 +921,38 @@ p.muted-copy {
   background: var(--color-primary);
   color: var(--color-surface) !important;
   border-color: transparent;
+}
+/* Final mobile/desktop overrides */
+
+/* Client Portal button text */
+.nav-links a.button.button-primary.nav-cta,
+.nav-links a.button.button-primary.nav-cta:visited,
+.nav-links a.button.button-primary.nav-cta:hover,
+.nav-links a.button.button-primary.nav-cta:focus {
+  background: var(--color-primary) !important;
+  color: #fffaf1 !important;
+}
+
+/* Force any child text inside the portal button too */
+.nav-links a.button.button-primary.nav-cta * {
+  color: #fffaf1 !important;
+}
+
+/* Muted helper copy */
+p.muted-copy,
+.services p.muted-copy,
+.section p.muted-copy {
+  color: #65706e !important;
+  opacity: 1 !important;
+  font-size: var(--text-base) !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+/* Muted helper copy in dark mode */
+[data-theme='dark'] p.muted-copy,
+[data-theme='dark'] .services p.muted-copy,
+[data-theme='dark'] .section p.muted-copy {
+  color: #a6b1ad !important;
+  opacity: 1 !important;
 }
