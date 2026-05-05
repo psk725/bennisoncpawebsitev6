@@ -885,3 +885,10 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
   line-height: 1.02;
   max-width: 14ch;
 }
+.nav-cta {
+  margin-left: 12px;
+}
+.nav-cta,
+.nav-cta:visited {
+  color: #ffffff !important;
+}
