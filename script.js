@@ -35,35 +35,4 @@
     });
   }
 
-  if (form) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      if (!form.reportValidity()) {
-        return;
-      }
-
-      const data = new FormData(form);
-      const name = data.get('name');
-      const email = data.get('email');
-      const need = data.get('need');
-      const message = data.get('message');
-
-      const subject = encodeURIComponent(`Website inquiry from ${name}`);
-      const body = encodeURIComponent(
-        [
-          `Name: ${name}`,
-          `Email: ${email}`,
-          `Need: ${need}`,
-          '',
-          'Brief context:',
-          message,
-          '',
-          'Sent from the Bennison CPA website contact form.'
-        ].join('\n')
-      );
-
-      window.location.href = `mailto:craig@bennisoncpa.com?subject=${subject}&body=${body}`;
-    });
-  }
 })();
