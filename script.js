@@ -6,7 +6,8 @@
   const form = document.querySelector('[data-contact-form]');
   const year = document.querySelector('[data-year]');
 
-  let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const storedTheme = localStorage.getItem('theme');
+  let theme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   root.setAttribute('data-theme', theme);
 
   if (year) {
@@ -14,9 +15,12 @@
   }
 
   if (themeToggle) {
+    themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+
     themeToggle.addEventListener('click', () => {
       theme = theme === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
       themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
     });
   }
@@ -34,5 +38,4 @@
       });
     });
   }
-
 })();
