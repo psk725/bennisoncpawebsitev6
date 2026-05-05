@@ -911,29 +911,8 @@ p.muted-copy {
 [data-theme='dark'] .services p.muted-copy {
   color: #a6b1ad !important;
 }
-.nav-links a.nav-cta,
-.nav-links a.nav-cta:visited,
-.nav-links a.nav-cta:hover,
-.nav-links a.nav-cta:focus {
-  background: var(--color-primary);
-  color: var(--color-surface) !important;
-  border-color: transparent;
-}
+
 /* Final mobile/desktop overrides */
-
-/* Client Portal button text */
-.nav-links a.button.button-primary.nav-cta,
-.nav-links a.button.button-primary.nav-cta:visited,
-.nav-links a.button.button-primary.nav-cta:hover,
-.nav-links a.button.button-primary.nav-cta:focus {
-  background: var(--color-primary) !important;
-  color: #fffaf1 !important;
-}
-
-/* Force any child text inside the portal button too */
-.nav-links a.button.button-primary.nav-cta * {
-  color: #fffaf1 !important;
-}
 
 /* Muted helper copy */
 p.muted-copy,
@@ -954,11 +933,11 @@ p.muted-copy,
   opacity: 1 !important;
 }
 
-.nav-links a.button.button-primary.nav-cta,
-.nav-links a.button.button-primary.nav-cta:visited,
-.nav-links a.button.button-primary.nav-cta:hover,
-.nav-links a.button.button-primary.nav-cta:focus {
+.button.button-primary,
+.button.button-primary:visited,
+.button.button-primary:hover,
+.button.button-primary:focus {
   background: var(--color-primary) !important;
-  color: #fffaf1 !important;
+  color: #1d2733 !important;
   border-color: transparent;
 }
