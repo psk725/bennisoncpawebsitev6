@@ -896,3 +896,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
   text-wrap: balance;
   max-width: 13ch;
 }
+.muted-copy {
+  color: var(--color-text-muted);
+}
