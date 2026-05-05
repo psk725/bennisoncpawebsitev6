@@ -904,3 +904,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 <p class="muted-copy">
   Not sure which fit is right? Start a conversation and I’ll help scope the next step.
 </p>
+[data-theme='dark'] .nav-links .client-portal {
+  color: var(--color-surface) !important;
+}
