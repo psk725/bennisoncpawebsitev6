@@ -879,3 +879,9 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
   padding-top: var(--space-12);
   padding-bottom: var(--space-12);
 }
+/* Hero headline size adjustment */
+.hero-title {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  max-width: 12ch;
+}
