@@ -917,3 +917,11 @@ p.muted-copy {
 [data-theme='dark'] .services p.muted-copy {
   color: #a6b1ad !important;
 }
+.nav-links a.nav-cta,
+.nav-links a.nav-cta:visited,
+.nav-links a.nav-cta:hover,
+.nav-links a.nav-cta:focus {
+  background: var(--color-primary);
+  color: var(--color-surface) !important;
+  border-color: transparent;
+}
