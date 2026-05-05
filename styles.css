@@ -890,10 +890,7 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 .nav-cta {
   margin-left: 12px;
 }
-.nav-cta,
-.nav-cta:visited {
-  color: #ffffff !important;
-}
+
 .hero h1 {
   text-wrap: balance;
   max-width: 13ch;
@@ -955,4 +952,13 @@ p.muted-copy,
 [data-theme='dark'] .section p.muted-copy {
   color: #a6b1ad !important;
   opacity: 1 !important;
+}
+
+.nav-links a.button.button-primary.nav-cta,
+.nav-links a.button.button-primary.nav-cta:visited,
+.nav-links a.button.button-primary.nav-cta:hover,
+.nav-links a.button.button-primary.nav-cta:focus {
+  background: var(--color-primary) !important;
+  color: #fffaf1 !important;
+  border-color: transparent;
 }
