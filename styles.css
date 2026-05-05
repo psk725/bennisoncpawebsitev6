@@ -884,17 +884,14 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 /* Hero headline size adjustment */
 .hero h1 {
   font-size: clamp(2.4rem, 4.6vw, 4.25rem);
+  text-wrap: balance;
   line-height: 1.02;
-  max-width: 14ch;
+  max-width: 13ch;
 }
 .nav-cta {
   margin-left: 12px;
 }
 
-.hero h1 {
-  text-wrap: balance;
-  max-width: 13ch;
-}
 .muted-copy {
   color: var(--color-text-muted);
 }
