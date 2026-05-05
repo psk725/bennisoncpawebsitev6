@@ -892,3 +892,7 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 .nav-cta:visited {
   color: #ffffff !important;
 }
+.hero h1 {
+  text-wrap: balance;
+  max-width: 13ch;
+}
