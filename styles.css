@@ -848,3 +848,34 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
     transition-duration: 0.01ms !important;
   }
 }
+/* Custom section spacing overrides */
+
+.services.section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.industries.section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.about.section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.process.section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.faqs.section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.contact.section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
