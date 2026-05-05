@@ -907,3 +907,13 @@ p.muted-copy {
 [data-theme='dark'] .nav-links .client-portal {
   color: var(--color-surface) !important;
 }
+.services p.muted-copy {
+  color: #65706e !important;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+[data-theme='dark'] .services p.muted-copy {
+  color: #a6b1ad !important;
+}
