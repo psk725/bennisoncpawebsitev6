@@ -953,3 +953,9 @@ p.muted-copy {
   transform: translateY(-1px);
   opacity: 0.92;
 }
+@media (max-width: 560px) {
+  .hero,
+  .section {
+    padding-inline: 1.75rem;
+  }
+}
