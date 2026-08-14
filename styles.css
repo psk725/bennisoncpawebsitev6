@@ -944,14 +944,21 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
   margin-top: var(--space-10);
 }
 
-.prose h2:first-of-type {
-  margin-top: 0;
-}
-
+/* Body copy, not muted: this is a full page of legal text and it has to be
+   comfortable to actually read. Muted grey is for short supporting lines. */
 .prose p,
 .prose li {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   margin-top: var(--space-4);
+}
+
+/* Opening summary paragraph, before the first heading. */
+.prose > p:first-child {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  margin-top: 0;
+  padding-bottom: var(--space-2);
 }
 
 .prose ul {
