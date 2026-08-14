@@ -301,11 +301,16 @@ h2 {
   text-transform: uppercase;
 }
 
+/* The wrap is controlled by measure and size, NOT by text-wrap: measured across
+   16 viewports, `balance` and `normal` give identical line breaks here (`pretty`
+   is worse). At 13ch the headline needed 5+ lines and orphaned a short second
+   line; 18ch with a 1.65rem floor holds it to 4 lines from 360px to 1800px.
+   Changing either value re-opens the problem, so re-measure if you touch them. */
 .hero h1 {
-  font-size: clamp(2.4rem, 4.6vw, 4.25rem);
+  font-size: clamp(1.65rem, 4.6vw, 4.25rem);
   letter-spacing: -0.035em;
   line-height: 1.02;
-  max-width: 13ch;
+  max-width: 18ch;
   text-wrap: balance;
 }
 
@@ -740,8 +745,10 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 }
 
 /* Two-column blocks carry column minimums that stop fitting well before the
-   860px nav breakpoint, so they collapse earlier than the navigation does. */
-@media (max-width: 1023px) {
+   860px nav breakpoint, so they collapse earlier than the navigation does.
+   1150 rather than 1024: at ~1024 the split left the hero copy column near
+   495px, which forced the headline back to 5 ragged lines. */
+@media (max-width: 1149px) {
   .hero,
   .section-intro,
   .about-panel,
