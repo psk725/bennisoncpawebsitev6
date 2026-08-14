@@ -519,17 +519,9 @@
     <script src="script.js" defer></script>
 
     <!--
-      ANALYTICS — Cloudflare Web Analytics (free, cookieless, no consent banner needed).
-
-      bennisoncpa.com already runs through Cloudflare, so the simplest route needs no
-      code at all: Cloudflare dashboard > Analytics & Logs > Web Analytics > add
-      bennisoncpa.com. Cloudflare injects the beacon for you.
-
-      Only if you'd rather control it here: grab your token from that same screen,
-      paste it in below, and delete the comment markers around the script tag.
-
-      <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-              data-cf-beacon='{"token": "PASTE_YOUR_TOKEN_HERE"}'></script>
+      ANALYTICS: Cloudflare Web Analytics is enabled via automatic setup in the
+      Cloudflare dashboard, so the beacon is injected at the edge. Deliberately
+      no analytics script here - adding one would double-count every page view.
     -->
   </body>
 </html>
