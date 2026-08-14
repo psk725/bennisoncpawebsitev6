@@ -8,6 +8,8 @@
       name="description"
       content="Bennison CPA and Consultants helps owner-led businesses and professionals with accounting, advisory, tax, and project-based finance support."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:site_name" content="Bennison CPA and Consultants" />
     <meta property="og:title" content="Bennison CPA and Consultants" />
     <meta
       property="og:description"
@@ -15,31 +17,64 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.bennisoncpa.com/" />
-    <meta property="og:image" content="https://www.bennisoncpa.com/assets/og-bennisoncpa-white.png" />
+    <meta property="og:image" content="https://www.bennisoncpa.com/assets/og-bennisoncpa.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bennison CPA and Consultants | Strategic Advisor, Small Business Finance" />
     <meta property="og:locale" content="en_US" />
-    
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Bennison CPA and Consultants" />
     <meta name="twitter:description" content="CPA advisory, accounting, and tax support for owner-led businesses." />
-    <meta name="twitter:image" content="https://www.bennisoncpa.com/assets/og-bennisoncpa-white.png" />
- 
-    <meta name="theme-color" content="#174a7c" />
+    <meta name="twitter:image" content="https://www.bennisoncpa.com/assets/og-bennisoncpa.jpg" />
+
+    <meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101615" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://www.bennisoncpa.com/" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!--
+      Theme must be resolved before first paint, otherwise dark-mode visitors
+      get a flash of the light palette. Keep this inline and above the stylesheet.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://api.fontshare.com" />
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=zodiak@500,600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <!--
+      Fontshare's API honours only the FIRST f[] parameter and silently drops any
+      others, so each family needs its own request. Combining them into one URL is
+      why the Zodiak headings previously fell back to Georgia. Zodiak also ships
+      400/700 — not 500/600.
+    -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@400,700&display=swap" />
     <link rel="stylesheet" href="styles.css" />
+    <!--
+      TODO (Craig): to compete in the Google local pack, add "streetAddress" and
+      "postalCode" below, plus "openingHours" and "priceRange". Whatever you put
+      here must match your Google Business Profile character-for-character.
+    -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "AccountingService",
+        "@id": "https://www.bennisoncpa.com/#organization",
         "name": "Bennison CPA and Consultants, PLLC",
         "url": "https://www.bennisoncpa.com",
+        "logo": "https://www.bennisoncpa.com/assets/og-bennisoncpa.jpg",
+        "image": "https://www.bennisoncpa.com/assets/og-bennisoncpa.jpg",
         "telephone": "+1-614-769-7521",
         "sameAs": [
           "https://www.linkedin.com/in/craig-bennison-cpa-a8450a20/"
@@ -47,7 +82,15 @@
         "founder": {
           "@type": "Person",
           "name": "Craig Bennison",
-          "jobTitle": "Certified Public Accountant"
+          "jobTitle": "Certified Public Accountant",
+          "image": "https://www.bennisoncpa.com/assets/craig-bennison.jpg",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Kent State University"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/craig-bennison-cpa-a8450a20/"
+          ]
         },
         "address": {
           "@type": "PostalAddress",
@@ -55,9 +98,83 @@
           "addressRegion": "FL",
           "addressCountry": "US"
         },
-        "areaServed": ["Central Florida", "Orlando", "Mount Dora", "Sarasota", "Southwest Florida", "Tampa", "Miami", "Naples", "Cleveland", "Chicago", "Columbus", "Atlanta", "United States"],
+        "areaServed": [
+          { "@type": "City", "name": "Mount Dora" },
+          { "@type": "City", "name": "Orlando" },
+          { "@type": "AdministrativeArea", "name": "Lake County, Florida" },
+          { "@type": "AdministrativeArea", "name": "Central Florida" }
+        ],
+        "availableLanguage": "en",
+        "knowsAbout": [
+          "QuickBooks Online cleanup",
+          "Small business tax planning",
+          "Construction job cost accounting",
+          "Manufacturing inventory and margin analysis",
+          "Financial due diligence and quality of earnings",
+          "Management reporting and cash flow advisory"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "CPA services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accounting systems and clean books" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tax planning and preparation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Advisory and project work" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transaction and diligence support" } }
+          ]
+        },
         "email": "mailto:craig@bennisoncpa.com",
         "description": "CPA advisory, accounting, tax, and project-based finance support for owner-led businesses and professionals."
+      }
+    </script>
+
+    <!-- Keep these answers identical to the visible FAQ copy below, or Google drops the rich result. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you work with clients outside Central Florida?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Bennison CPA is based in Central Florida and can support many engagements virtually across the United States."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What type of client is the best fit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Owner-led businesses, professionals, and small teams that want accounting, tax, or advisory work tied to practical business decisions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you help clean up QuickBooks Online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Cleanup, reconciliation, chart of accounts refinement, and process setup are all strong fits for the firm."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you handle tax-only work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Selective tax engagements are available, especially when the tax work connects to broader planning, bookkeeping, or advisory needs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens after I send the form?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After you send the form, your message is delivered securely and Craig will follow up personally with next steps."
+            }
+          }
+        ]
       }
     </script>
   </head>
@@ -242,7 +359,14 @@
             <p class="eyebrow">About Craig</p>
             <h2>Meet Craig Bennison, CPA</h2>
             <figure class="bio-photo">
-              <img src="assets/craig-bennison.jpg" alt="Craig Bennison, CPA" loading="lazy" />
+              <img
+                src="assets/craig-bennison.jpg"
+                alt="Craig Bennison, CPA, founder of Bennison CPA and Consultants"
+                width="680"
+                height="849"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           </div>
           <div class="about-copy">
@@ -333,14 +457,23 @@
               Phone: <a href="tel:+16147697521">(614) 769-7521</a>
             </p>
           </div>
-          <form class="contact-form" action="https://formspree.io/f/mlgzbqjk" method="POST">
-             <div class="field">
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/mlgzbqjk"
+            method="POST"
+            data-contact-form
+          >
+            <div class="field">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required />
             </div>
             <div class="field">
               <label for="email">Email</label>
               <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="field-optional">(optional)</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" />
             </div>
             <div class="field">
               <label for="need">What do you need help with?</label>
@@ -358,12 +491,18 @@
               <textarea id="message" name="message" rows="5" required placeholder="A few details about your business, deadline, and question."></textarea>
             </div>
 
+            <!-- Spam honeypot: real people never see this, bots fill it in and Formspree discards the message. -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot" />
+            <input type="hidden" name="_subject" value="New inquiry from bennisoncpa.com" />
 
-            
-            <button class="button button-primary form-submit" type="submit">Send message</button>
+            <button class="button button-primary form-submit" type="submit" data-submit>Send message</button>
+
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+
             <p class="form-note">
-                A few details is all it takes. I’ll follow up personally. Your message is sent securely.
-                </p>
+              A few details is all it takes. I’ll follow up personally. Your message is sent securely
+              and never shared — see the <a href="privacy.html">privacy policy</a>.
+            </p>
           </form>
         </div>
       </section>
@@ -371,11 +510,26 @@
 
     <footer class="site-footer">
       <p>© <span data-year></span> Bennison CPA and Consultants, PLLC. CPA advisory, accounting, and tax support.</p>
-      <a href="#top">Back to top</a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="privacy.html">Privacy</a>
+        <a href="#top">Back to top</a>
+      </nav>
     </footer>
 
     <script src="script.js" defer></script>
-  
 
-</body>
+    <!--
+      ANALYTICS — Cloudflare Web Analytics (free, cookieless, no consent banner needed).
+
+      bennisoncpa.com already runs through Cloudflare, so the simplest route needs no
+      code at all: Cloudflare dashboard > Analytics & Logs > Web Analytics > add
+      bennisoncpa.com. Cloudflare injects the beacon for you.
+
+      Only if you'd rather control it here: grab your token from that same screen,
+      paste it in below, and delete the comment markers around the script tag.
+
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+              data-cf-beacon='{"token": "PASTE_YOUR_TOKEN_HERE"}'></script>
+    -->
+  </body>
 </html>
