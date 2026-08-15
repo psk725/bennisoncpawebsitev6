@@ -681,16 +681,6 @@ details p {
   margin-top: var(--space-6);
 }
 
-.contact-booking {
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--space-8);
-  padding-top: var(--space-6);
-}
-
-.contact-booking p {
-  margin-bottom: var(--space-4);
-}
-
 .contact-form {
   display: grid;
   gap: var(--space-4);
