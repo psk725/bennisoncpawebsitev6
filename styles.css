@@ -720,8 +720,18 @@ textarea {
   resize: vertical;
 }
 
-input:invalid:not(:focus):not(:placeholder-shown),
-textarea:invalid:not(:focus):not(:placeholder-shown) {
+/* :user-invalid, not :invalid.
+   A required field is :invalid from the moment the page loads, and #name and
+   #email have no placeholder attribute, so :not(:placeholder-shown) is always
+   true for them. The old rule therefore painted both fields error-red before
+   the visitor had typed a single character.
+   :user-invalid only matches once the person has actually edited the field or
+   tried to submit, which is the only point at which "this is wrong" is true.
+   Browsers without support simply show no error tint, which is the safe way
+   to degrade. */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
   border-color: var(--color-error);
 }
 
@@ -991,6 +1001,23 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* 404 page */
+
+.notfound-links {
+  margin-top: var(--space-4);
+}
+
+.notfound-cta {
+  margin-top: var(--space-8);
+}
+
+/* The button carries its own colour and needs no underline. */
+.prose .notfound-cta a.button {
+  color: var(--color-surface);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 @media (max-width: 560px) {
