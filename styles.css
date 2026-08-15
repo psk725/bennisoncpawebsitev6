@@ -31,6 +31,8 @@
   --color-accent: #2d70b8;
   --color-accent-soft: #dbe9f7;
   --color-error: #8f263f;
+  --color-success: #1f6b45;
+  --color-text-subtle: #5a6462;
   --shadow-sm: 0 1px 2px oklch(0.25 0.02 80 / 0.08);
   --shadow-md: 0 16px 48px oklch(0.22 0.03 80 / 0.12);
   --radius-sm: 0.45rem;
@@ -52,6 +54,8 @@
   --color-accent: #67a8f0;
   --color-accent-soft: #1c3148;
   --color-error: #ed86a1;
+  --color-success: #7fd6a8;
+  --color-text-subtle: #b3beb9;
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.24);
   --shadow-md: 0 16px 48px oklch(0 0 0 / 0.34);
 }
@@ -122,9 +126,12 @@ h3 {
   text-wrap: balance;
 }
 
+/* Zodiak publishes 400 and 700 (not 500/600), so name 700 explicitly rather
+   than letting the browser synthesise a weight that was never downloaded. */
 h1,
 h2 {
   font-family: var(--font-display);
+  font-weight: 700;
 }
 
 :focus-visible {
@@ -230,7 +237,9 @@ h2 {
   gap: var(--space-1);
 }
 
-.nav-links a,
+/* :not(.button) matters. Without it this rule outranks .button-primary and
+   paints the Client Portal CTA muted grey on navy (1.78:1). */
+.nav-links a:not(.button),
 .theme-toggle {
   border-radius: var(--radius-md);
   color: var(--color-text-muted);
@@ -240,7 +249,7 @@ h2 {
   padding: var(--space-3) var(--space-4);
 }
 
-.nav-links a:hover,
+.nav-links a:not(.button):hover,
 .theme-toggle:hover {
   background: color-mix(in oklab, var(--color-surface-2), transparent 45%);
   color: var(--color-text);
@@ -272,7 +281,10 @@ h2 {
   align-items: center;
   display: grid;
   gap: clamp(var(--space-8), 7vw, var(--space-24));
-  grid-template-columns: minmax(520px, 1fr) minmax(340px, 0.58fr);
+  /* First column must be able to shrink (minmax(0, …), not minmax(520px, …)),
+     otherwise the two columns' minimums exceed the viewport on tablets and the
+     whole page scrolls sideways. */
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.58fr);
   margin: 0 auto;
   max-width: 1440px;
   min-height: min(720px, calc(100dvh - 76px));
@@ -289,10 +301,17 @@ h2 {
   text-transform: uppercase;
 }
 
+/* The wrap is controlled by measure and size, NOT by text-wrap: measured across
+   16 viewports, `balance` and `normal` give identical line breaks here (`pretty`
+   is worse). At 13ch the headline needed 5+ lines and orphaned a short second
+   line; 18ch with a 1.65rem floor holds it to 4 lines from 360px to 1800px.
+   Changing either value re-opens the problem, so re-measure if you touch them. */
 .hero h1 {
-  font-size: var(--text-2xl);
+  font-size: clamp(1.65rem, 4.6vw, 4.25rem);
   letter-spacing: -0.035em;
-  max-width: 11.75ch;
+  line-height: 1.02;
+  max-width: 18ch;
+  text-wrap: balance;
 }
 
 .hero-lede {
@@ -462,7 +481,7 @@ h2 {
 .section {
   margin: 0 auto;
   max-width: 1440px;
-  padding: clamp(var(--space-12), 8vw, var(--space-24)) clamp(var(--space-5), 5vw, var(--space-16));
+  padding: var(--space-12) clamp(var(--space-5), 5vw, var(--space-16));
 }
 
 .section-intro {
@@ -484,9 +503,8 @@ h2 {
   letter-spacing: -0.02em;
 }
 
-.about-panel h2 {
-  white-space: nowrap;
-}
+/* NOTE: "white-space: nowrap" used to live here. It forced a 420px unbreakable
+   heading that overflowed its column between 560px and 860px. Let it wrap. */
 
 .section-intro p:not(.eyebrow) {
   color: var(--color-text-muted);
@@ -663,6 +681,15 @@ details p {
   margin-top: var(--space-6);
 }
 
+/* The phone number is a tel: link. Without this it inherits the muted paragraph
+   colour and the global "a { color: inherit }", so it renders as plain grey text
+   with no sign it can be tapped. Bold as well as coloured, so the cue is not
+   carried by colour alone. */
+.contact-phone a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 .contact-form {
   display: grid;
   gap: var(--space-4);
@@ -726,6 +753,28 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
   font-weight: 700;
 }
 
+/* Two-column blocks carry column minimums that stop fitting well before the
+   860px nav breakpoint, so they collapse earlier than the navigation does.
+   1150 rather than 1024: at ~1024 the split left the hero copy column near
+   495px, which forced the headline back to 5 ragged lines. */
+@media (max-width: 1149px) {
+  .hero,
+  .section-intro,
+  .about-panel,
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: var(--space-16);
+  }
+
+  .about-copy {
+    padding-top: 0;
+  }
+}
+
 @media (max-width: 860px) {
   .nav-toggle {
     display: flex;
@@ -755,22 +804,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
     width: 100%;
   }
 
-  .hero,
-  .section-intro,
-  .about-panel,
-  .contact-card {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: auto;
-    padding-top: var(--space-16);
-  }
-
-  .hero h1 {
-    max-width: 11.5ch;
-  }
-
   .trust-strip,
   .industry-grid,
   .steps {
@@ -779,10 +812,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 
   .service-layout {
     grid-template-columns: 1fr;
-  }
-
-  .about-copy {
-    padding-top: 0;
   }
 }
 
@@ -810,10 +839,6 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
 
   .bio-photo {
     max-width: 100%;
-  }
-
-  .about-panel h2 {
-    white-space: normal;
   }
 
   .mini-statement {
@@ -850,109 +875,124 @@ textarea:invalid:not(:focus):not(:placeholder-shown) {
     transition-duration: 0.01ms !important;
   }
 }
-/* Custom section spacing overrides */
+/* ==========================================================================
+   Components
+   ========================================================================== */
 
-.services.section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-
-.industries.section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-
-.about.section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-
-.process.section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-
-.faqs.section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-
-.contact.section {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-12);
-}
-/* Hero headline size adjustment */
-.hero h1 {
-  font-size: clamp(2.4rem, 4.6vw, 4.25rem);
-  text-wrap: balance;
-  line-height: 1.02;
-  max-width: 13ch;
-}
 .nav-cta {
-  margin-left: 12px;
+  margin-left: var(--space-3);
 }
 
 .muted-copy {
+  color: var(--color-text-subtle);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.field-optional {
   color: var(--color-text-muted);
-}
-p.muted-copy {
-  color: var(--color-text-muted) !important;
-}
-.services p.muted-copy {
-  color: #65706e !important;
-  font-size: var(--text-base);
-  line-height: 1.6;
   font-weight: 400;
 }
 
-[data-theme='dark'] .services p.muted-copy {
-  color: #a6b1ad !important;
+/* Bot trap. Must stay in the layout for bots to find it, and stay out of the
+   accessibility tree and tab order for everyone else. */
+.honeypot {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
 }
 
-/* FINAL OVERRIDES (must be below everything else) */
-
-/* Muted copy – tighter + slightly darker */
-.section p.muted-copy {
-  color: #5a6462 !important;
-  font-size: 0.95rem !important;
-  line-height: 1.5 !important;
+.form-status {
+  font-size: var(--text-sm);
+  font-weight: 500;
 }
 
-/* Dark mode refinement */
-[data-theme='dark'] .section p.muted-copy {
-  color: #b3beb9 !important;
+.form-status:empty {
+  display: none;
 }
 
-/* Button polish */
-.button.button-primary {
-  padding: 10px 18px !important;
-  border-radius: 999px;
+.form-status[data-state='success'] {
+  color: var(--color-success);
 }
 
-/* Hover refinement */
-.button.button-primary:hover {
-  transform: translateY(-1px);
-  opacity: 0.92;
+.form-status[data-state='error'] {
+  color: var(--color-error);
 }
 
-/* Button polish */
-.button.button-primary,
-.button.button-primary:visited,
-.button.button-primary:focus {
-  padding: 10px 18px !important;
-  border-radius: 999px;
-  background: var(--color-primary) !important;
-  color: #ffffff !important;
-  border-color: transparent;
+.footer-links {
+  display: flex;
+  gap: var(--space-5);
 }
 
-/* Hover refinement */
-.button.button-primary:hover {
-  background: var(--color-primary) !important;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-  opacity: 0.92;
+/* ==========================================================================
+   Privacy / content pages
+   ========================================================================== */
+
+.page-header {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: var(--space-16) clamp(var(--space-5), 5vw, var(--space-16)) 0;
 }
+
+.page-header h1 {
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+}
+
+.page-meta {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-3);
+}
+
+.prose {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: var(--space-8) clamp(var(--space-5), 5vw, var(--space-16)) var(--space-16);
+}
+
+.prose h2 {
+  font-size: var(--text-lg);
+  margin-top: var(--space-10);
+}
+
+/* Body copy, not muted: this is a full page of legal text and it has to be
+   comfortable to actually read. Muted grey is for short supporting lines. */
+.prose p,
+.prose li {
+  color: var(--color-text);
+  margin-top: var(--space-4);
+}
+
+/* Opening summary paragraph, before the first heading. */
+.prose > p:first-child {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  margin-top: 0;
+  padding-bottom: var(--space-2);
+}
+
+.prose ul {
+  margin-top: var(--space-2);
+  padding-left: var(--space-5);
+}
+
+.prose li {
+  margin-top: var(--space-2);
+}
+
+.prose a {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 @media (max-width: 560px) {
   .hero,
   .section {

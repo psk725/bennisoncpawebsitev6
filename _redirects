@@ -1,0 +1,12 @@
+# Cloudflare Pages redirects. Format: <from> <to> <status>
+#
+# Short, shareable booking link: bennisoncpa.com/schedule
+# Microsoft Bookings gives no way to shorten its own URL, so this stands in for
+# it on email signatures, business cards, and anywhere the link gets said aloud.
+#
+# 302 and not 301 on purpose: browsers cache a 301 hard, so if the booking tool
+# or the service alias ever changes, anyone holding a cached 301 lands somewhere
+# dead and there is no way to fix it on their machine. A 302 stays steerable.
+/schedule   https://bookings.cloud.microsoft/book/BennisonCPA@bennisoncpa.com/   302
+/schedule/  https://bookings.cloud.microsoft/book/BennisonCPA@bennisoncpa.com/   302
+/book       https://bookings.cloud.microsoft/book/BennisonCPA@bennisoncpa.com/   302
