@@ -1,0 +1,45 @@
+# Cloudflare Pages response headers.
+#
+# WHY THIS FILE EXISTS
+# Pages serves HTML with max-age=0 but static assets with max-age=14400 (4 hours).
+# That combination means that for four hours after a deploy, a returning visitor
+# gets the NEW html paired with the OLD stylesheet and script from their browser
+# cache. The page then renders wrong in ways that look like real bugs: the spam
+# honeypot becomes a visible input, the privacy page loses its layout, and the
+# contact form stops submitting in the background and dead-ends on Formspree.
+#
+# styles.css and script.js therefore revalidate on every request. That costs one
+# conditional request each, which returns a ~200 byte 304 when nothing changed,
+# and it makes every deploy correct immediately for everyone.
+#
+# Images keep a real cache. A stale image is cosmetic, never broken layout.
+
+/styles.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/script.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=86400
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+
+# Security headers. Deliberately NO Content-Security-Policy here yet: this site
+# loads fonts from Fontshare, posts the contact form to Formspree via fetch(),
+# and has an edge-injected Cloudflare analytics beacon. A CSP has to allow all
+# three, and getting connect-src wrong silently blocks form submissions. Worth
+# adding, but only as its own change with the form tested against it.
+#
+# HSTS is set without includeSubDomains on purpose. The apex and www are the
+# only hostnames this project controls; the other records point at Microsoft.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-Frame-Options: SAMEORIGIN
