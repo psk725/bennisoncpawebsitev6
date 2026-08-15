@@ -237,7 +237,7 @@ h2 {
   gap: var(--space-1);
 }
 
-/* :not(.button) matters — without it this rule outranks .button-primary and
+/* :not(.button) matters. Without it this rule outranks .button-primary and
    paints the Client Portal CTA muted grey on navy (1.78:1). */
 .nav-links a:not(.button),
 .theme-toggle {
