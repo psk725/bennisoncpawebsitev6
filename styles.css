@@ -681,6 +681,15 @@ details p {
   margin-top: var(--space-6);
 }
 
+/* The phone number is a tel: link. Without this it inherits the muted paragraph
+   colour and the global "a { color: inherit }", so it renders as plain grey text
+   with no sign it can be tapped. Bold as well as coloured, so the cue is not
+   carried by colour alone. */
+.contact-phone a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 .contact-form {
   display: grid;
   gap: var(--space-4);
