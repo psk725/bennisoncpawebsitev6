@@ -588,14 +588,22 @@ h2 {
 /* Primary card runs full width, so prose alone leaves a third of it empty and
    stretching the prose pushes lines past a readable measure. The right column
    carries the detail a retainer prospect actually wants. */
+/* Prose on top, the two lists side by side beneath it, all inside the card.
+   Beside the prose the lists left a 239px column of dead space; stacked, the
+   card is shorter and nothing is stranded. */
 .primary-split {
   display: grid;
-  gap: clamp(var(--space-6), 4vw, var(--space-12));
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.primary-prose {
+  grid-column: 1 / -1;
+  max-width: 74ch;
 }
 
 .primary-prose p {
-  max-width: 54ch;
+  max-width: 68ch;
 }
 
 .primary-prose p + p {
@@ -612,7 +620,7 @@ h2 {
 
 .primary-detail ul {
   list-style: none;
-  margin: var(--space-3) 0 var(--space-6);
+  margin: var(--space-3) 0 0;
   padding: 0;
 }
 
@@ -624,11 +632,12 @@ h2 {
   border-top: 1px solid color-mix(in oklab, var(--color-border), transparent 40%);
   color: var(--color-text-muted);
   font-size: var(--text-sm);
+  line-height: 1.45;
   max-width: none;
-  padding: var(--space-3) 0;
+  padding: var(--space-2) 0;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 700px) {
   .primary-split {
     grid-template-columns: 1fr;
   }
