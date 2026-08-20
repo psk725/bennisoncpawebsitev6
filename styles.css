@@ -585,6 +585,55 @@ h2 {
   margin-top: var(--space-4);
 }
 
+/* Primary card runs full width, so prose alone leaves a third of it empty and
+   stretching the prose pushes lines past a readable measure. The right column
+   carries the detail a retainer prospect actually wants. */
+.primary-split {
+  display: grid;
+  gap: clamp(var(--space-6), 4vw, var(--space-12));
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.primary-prose p {
+  max-width: 54ch;
+}
+
+.primary-prose p + p {
+  margin-top: var(--space-4);
+}
+
+.detail-label {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.primary-detail ul {
+  list-style: none;
+  margin: var(--space-3) 0 var(--space-6);
+  padding: 0;
+}
+
+.primary-detail ul:last-child {
+  margin-bottom: 0;
+}
+
+.primary-detail li {
+  border-top: 1px solid color-mix(in oklab, var(--color-border), transparent 40%);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  max-width: none;
+  padding: var(--space-3) 0;
+}
+
+@media (max-width: 860px) {
+  .primary-split {
+    grid-template-columns: 1fr;
+  }
+}
+
 .service-tag {
   color: var(--color-accent);
   display: inline-block;
