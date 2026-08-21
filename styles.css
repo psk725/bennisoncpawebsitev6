@@ -518,11 +518,6 @@ h2 {
   max-width: 860px;
 }
 
-.service-layout {
-  display: grid;
-  gap: var(--space-4);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 
 .industry-grid {
   display: grid;
@@ -555,6 +550,114 @@ h2 {
   padding: var(--space-6);
 }
 
+
+/* Services: one primary engagement, three secondary. The visual weight encodes
+   the actual business hierarchy, so the numbered 01-04 markers are gone; they
+   implied a sequence that was never real. */
+.service-stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.service-secondary {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-card.is-primary {
+  background: color-mix(in oklab, var(--color-surface), transparent 0%);
+  border-color: color-mix(in oklab, var(--color-accent), transparent 55%);
+  min-height: 0;
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+}
+
+.service-card.is-primary h3 {
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+}
+
+.service-card.is-primary p {
+  max-width: 62ch;
+}
+
+.service-card.is-primary p + p {
+  margin-top: var(--space-4);
+}
+
+/* Primary card runs full width, so prose alone leaves a third of it empty and
+   stretching the prose pushes lines past a readable measure. The right column
+   carries the detail a retainer prospect actually wants. */
+/* Prose on top, the two lists side by side beneath it, all inside the card.
+   Beside the prose the lists left a 239px column of dead space; stacked, the
+   card is shorter and nothing is stranded. */
+.primary-split {
+  display: grid;
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.primary-prose {
+  grid-column: 1 / -1;
+  max-width: 74ch;
+}
+
+.primary-prose p {
+  max-width: 68ch;
+}
+
+.primary-prose p + p {
+  margin-top: var(--space-4);
+}
+
+.detail-label {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.primary-detail ul {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+}
+
+.primary-detail ul:last-child {
+  margin-bottom: 0;
+}
+
+.primary-detail li {
+  border-top: 1px solid color-mix(in oklab, var(--color-border), transparent 40%);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  max-width: none;
+  padding: var(--space-2) 0;
+}
+
+@media (max-width: 700px) {
+  .primary-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-tag {
+  color: var(--color-accent);
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+}
+
+@media (max-width: 1023px) {
+  .service-secondary {
+    grid-template-columns: 1fr;
+  }
+}
 .service-number {
   color: var(--color-accent);
   display: inline-block;
@@ -820,9 +923,6 @@ textarea:user-invalid {
     grid-template-columns: 1fr;
   }
 
-  .service-layout {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 560px) {
