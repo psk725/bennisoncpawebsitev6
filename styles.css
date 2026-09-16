@@ -302,12 +302,18 @@ h2 {
 }
 
 /* The wrap is controlled by measure and size, NOT by text-wrap: measured across
-   16 viewports, `balance` and `normal` give identical line breaks here (`pretty`
+   14 viewports, `balance` and `normal` give identical line breaks here (`pretty`
    is worse). At 13ch the headline needed 5+ lines and orphaned a short second
-   line; 18ch with a 1.65rem floor holds it to 4 lines from 360px to 1800px.
+   line, so the measure stays at 18ch with a 1.65rem floor.
+
+   The clamp was 4.6vw capped at 4.25rem. That rendered four jagged lines at
+   1200, 1280, 1366, 1536, 1600 and 1920, with a first line only 63% of the
+   measure, and 1440 was the one wide width that still held three. 4.4vw capped
+   at 4.15rem holds three lines at every width from 390px to 1920px, each line
+   91-98% of the measure. 360px is four lines, which is fine.
    Changing either value re-opens the problem, so re-measure if you touch them. */
 .hero h1 {
-  font-size: clamp(1.65rem, 4.6vw, 4.25rem);
+  font-size: clamp(1.65rem, 4.4vw, 4.15rem);
   letter-spacing: -0.035em;
   line-height: 1.02;
   max-width: 18ch;
