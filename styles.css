@@ -1132,3 +1132,62 @@ textarea:user-invalid {
     padding-inline: 1.75rem;
   }
 }
+
+/* Testimonials. One quote renders as a single feature block; two or more become a
+   grid automatically, so adding the second and third needs no CSS change. The
+   single-item case deliberately avoids a three-column grid with empty slots,
+   which advertises what is missing. */
+.testimonials {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(auto-fit, minmax(min(28rem, 100%), 1fr));
+}
+
+.testimonial {
+  border-left: 3px solid var(--color-accent);
+  margin: 0;
+  padding-left: clamp(var(--space-5), 3vw, var(--space-8));
+}
+
+.testimonial blockquote {
+  margin: 0;
+}
+
+.testimonial blockquote p {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1rem + 1.1vw, 1.9rem);
+  letter-spacing: -0.015em;
+  line-height: 1.32;
+  margin: 0;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.testimonial figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.testimonial-name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.testimonial-name,
+.testimonial-org {
+  font-size: var(--text-sm);
+}
+
+.testimonial-org {
+  color: var(--color-text-muted);
+}
+
+/* With more than one quote the type steps down so a row of them stays readable. */
+.testimonials:has(.testimonial + .testimonial) .testimonial blockquote p {
+  font-size: clamp(1.15rem, 0.95rem + 0.6vw, 1.45rem);
+  max-width: none;
+}
