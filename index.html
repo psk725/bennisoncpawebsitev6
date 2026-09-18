@@ -360,6 +360,33 @@
         </div>
       </section>
 
+      <!-- Testimonials are deliberately NOT marked up as Review or AggregateRating.
+           Google: "If the entity that's being reviewed controls the reviews about
+           itself, their pages that use LocalBusiness or any other type of
+           Organization structured data are ineligible for star review feature."
+           AccountingService inherits from LocalBusiness, so the markup would earn
+           nothing and would breach the guidelines. Display only. -->
+      <section class="section testimonials" aria-label="Client feedback">
+        <figure class="testimonial">
+          <blockquote>
+            <p>
+              We had years of job history in QuickBooks Desktop, and moving it was the part I was most
+              concerned about. Craig handled the conversion from start to finish. When QuickBooks Online
+              went live, I was able to log in and get started right away. The conversion went extremely
+              well.
+            </p>
+          </blockquote>
+          <figcaption>
+            <span class="testimonial-name">Angela Bedgood</span>
+            <span class="testimonial-org">
+              <a href="https://www.pergolakings.com/" target="_blank" rel="noopener noreferrer">
+                Pergola Kings<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+
       <section class="section industries" id="industries">
         <div class="section-intro">
           <p class="eyebrow">Industry focus</p>
