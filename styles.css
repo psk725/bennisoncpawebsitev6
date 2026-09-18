@@ -1191,3 +1191,16 @@ textarea:user-invalid {
   font-size: clamp(1.15rem, 0.95rem + 0.6vw, 1.45rem);
   max-width: none;
 }
+
+/* The company credit links out, so it needs to look like a link. Site-wide
+   `a { text-decoration: none }` would otherwise render it as plain text. */
+.testimonial-org a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor, transparent 55%);
+  text-underline-offset: 0.2em;
+}
+
+.testimonial-org a:hover {
+  color: var(--color-text);
+  text-decoration-color: currentColor;
+}
