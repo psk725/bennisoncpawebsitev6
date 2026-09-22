@@ -395,12 +395,23 @@ h2 {
   padding: var(--space-4);
 }
 
+/* The flexible track must be the VALUE, not the label. It was the other way
+   round (`minmax(0, 1fr) auto`) with the value set to `white-space: nowrap`,
+   which meant the value track could never shrink below its one-line width, so
+   the label track absorbed every shortfall and its text printed straight over
+   the value. Measured overlap of 48px at 1150 and 46px at 320.
+
+   Two bands were affected: 1150 to about 1330, where the hero is still two
+   columns and the card sits at its 340px minimum, and 320 to about 370 on small
+   phones. Half of a 2560 display is 1280, squarely in the first band.
+
+   Now the label is `auto`, sized to content it could not wrap anyway, and the
+   value takes the remaining space and wraps to a second line when it must. */
 .mini-statement div {
   align-items: center;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-4);
-  justify-content: space-between;
 }
 
 .mini-statement div + div {
@@ -421,7 +432,6 @@ h2 {
   font-size: var(--text-sm);
   line-height: 1.2;
   text-align: right;
-  white-space: nowrap;
 }
 
 .card-label {
